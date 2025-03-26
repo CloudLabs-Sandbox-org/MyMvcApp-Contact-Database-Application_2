@@ -22,22 +22,29 @@
       "metadata": {
         "description": "Nombre del App Service Plan."
       }
-    },
-    "resourceGroupName": {
-      "type": "string",
-      "defaultValue": "GitHub-Copilot-Challenges",
-      "metadata": {
-        "description": "Nombre del grupo de recursos."
-      }
     }
   },
   "resources": [
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2021-02-01",
+      "name": "[parameters('appServicePlanName')]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "tier": "Standard",
+        "name": "S1",
+        "capacity": 1
+      },
+      "properties": {}
+    },
     {
       "type": "Microsoft.Web/sites",
       "apiVersion": "2021-02-01",
       "name": "[parameters('appName')]",
       "location": "[parameters('location')]",
-      "kind": "app",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', parameters('appServicePlanName'))]"
+      ],
       "properties": {
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('appServicePlanName'))]",
         "httpsOnly": true,
@@ -53,22 +60,6 @@
             }
           ]
         }
-      }
-    },
-    {
-      "type": "Microsoft.Web/serverfarms",
-      "apiVersion": "2021-02-01",
-      "name": "[parameters('appServicePlanName')]",
-      "location": "[parameters('location')]",
-      "sku": {
-        "Tier": "Standard",
-        "Name": "S1",
-        "Capacity": 1
-      },
-      "properties": {
-        "name": "[parameters('appServicePlanName')]",
-        "workerSize": "0",
-        "numberOfWorkers": "1"
       }
     }
   ],
