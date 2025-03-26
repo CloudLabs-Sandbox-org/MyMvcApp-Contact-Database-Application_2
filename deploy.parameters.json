@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appName": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the Azure App Service."
+      }
+    },
+    "appServicePlanName": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the App Service Plan."
+      }
+    },
+    "location": {
+      "type": "string",
+      "metadata": {
+        "description": "The location where the resources will be deployed."
+      }
+    },
+    "sku": {
+      "type": "string",
+      "defaultValue": "S1",
+      "metadata": {
+        "description": "The SKU of the App Service Plan."
+      }
+    },
+    "hostingPlanTier": {
+      "type": "string",
+      "defaultValue": "Standard",
+      "metadata": {
+        "description": "The tier of the App Service Plan."
+      }
+    },
+    "hostingPlanSize": {
+      "type": "string",
+      "defaultValue": "S1",
+      "metadata": {
+        "description": "The size of the App Service Plan."
+      }
+    }
+  }
+}
