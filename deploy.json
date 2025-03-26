@@ -1,6 +1,36 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue": "West Europe",
+      "metadata": {
+        "description": "Ubicación para los recursos de Azure."
+      }
+    },
+    "appName": {
+      "type": "string",
+      "defaultValue": "MyMvcApp",
+      "metadata": {
+        "description": "Nombre de la aplicación web."
+      }
+    },
+    "appServicePlanName": {
+      "type": "string",
+      "defaultValue": "MyMvcAppServicePlan",
+      "metadata": {
+        "description": "Nombre del App Service Plan."
+      }
+    },
+    "resourceGroupName": {
+      "type": "string",
+      "defaultValue": "GitHub-Copilot-Challenges",
+      "metadata": {
+        "description": "Nombre del grupo de recursos."
+      }
+    }
+  },
   "resources": [
     {
       "type": "Microsoft.Web/sites",
